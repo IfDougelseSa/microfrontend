@@ -1,0 +1,50 @@
+<ng-container *ngIf="category$ | async as category; else loading">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>{{ category.name }}</h2>
+    
+    <div class="btn-group" role="group" aria-label="Ações da Categoria">
+      <a [routerLink]="routingService.buildPath(['categories', category.id, 'edit'])" class="btn btn-sm btn-outline-secondary" title="Editar esta categoria">
+        <i class="bi bi-pencil-square"></i> Editar
+      </a>
+
+      <a [routerLink]="routingService.buildPath(['categories', category.id, 'new-subcategory'])" class="btn btn-sm btn-outline-primary" title="Adicionar uma nova subcategoria">
+        <i class="bi bi-diagram-2"></i> Subcategoria
+      </a>
+
+      <a [routerLink]="routingService.buildPath(['categories', category.id, 'new-content'])" class="btn btn-sm btn-outline-success" title="Adicionar um novo conteúdo a esta categoria">
+        <i class="bi bi-plus-lg"></i> Conteúdo
+      </a>
+    </div>
+  </div>
+
+  <h3 class="mt-4">Conteúdos</h3>
+  <hr>
+  <p *ngIf="!category.contents || category.contents.length === 0">
+    Esta categoria ainda não possui conteúdo.
+  </p>
+
+  <div *ngFor="let content of category.contents" class="content-item mb-3">
+    <div class="d-flex justify-content-between align-items-start">
+      <div class="content-body flex-grow-1">
+        <h4>{{ content.title }}</h4>
+
+        <div [innerHTML]="content.body | safeHtml"></div>
+      </div>
+      
+      <div class="btn-group ms-3">
+        <a [routerLink]="routingService.buildPath(['categories', category.id, 'contents', content.id, 'edit'])" class="btn btn-sm btn-outline-primary" title="Editar este conteúdo">
+          <i class="bi bi-pencil"></i>
+        </a>
+
+        <button (click)="onDeleteContent(category.id, content)" class="btn btn-sm btn-outline-danger" title="Deletar este conteúdo">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+    </div>
+    <hr />
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <p>Carregando conteúdo...</p>
+</ng-template>

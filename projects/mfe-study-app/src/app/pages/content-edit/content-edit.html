@@ -1,0 +1,35 @@
+<h2>Editar Conteúdo</h2>
+<hr>
+
+<form [formGroup]="contentForm" (ngSubmit)="onSubmit()">
+  
+  <div class="mb-3">
+    <label for="contentTitle" class="form-label">Título</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      id="contentTitle" 
+      formControlName="title">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Conteúdo</label>
+    
+    <editor
+      formControlName="body"
+      [init]="editorConfig"
+      apiKey=""
+    ></editor>
+    
+    <div *ngIf="contentForm.get('body')?.invalid && contentForm.get('body')?.touched" class="text-danger small mt-1">
+      O conteúdo não pode estar vazio.
+    </div>
+  </div>
+
+  <button 
+    type="submit" 
+    class="btn btn-primary" 
+    [disabled]="contentForm.invalid || isSubmitting">
+    {{ isSubmitting ? 'Salvando Alterações...' : 'Salvar Alterações' }}
+  </button>
+</form>

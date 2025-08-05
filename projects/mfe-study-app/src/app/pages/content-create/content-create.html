@@ -1,0 +1,49 @@
+<h2>Adicionar Novo Conteúdo</h2>
+<hr>
+<form [formGroup]="contentForm" (ngSubmit)="onSubmit()">
+  
+  <div class="mb-3">
+    <label for="contentTitle" class="form-label">Título</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      id="contentTitle" 
+      formControlName="title"
+      [class.is-invalid]="contentForm.get('title')?.invalid && contentForm.get('title')?.touched">
+    
+    <div *ngIf="contentForm.get('title')?.invalid && contentForm.get('title')?.touched" class="invalid-feedback">
+      <div *ngIf="contentForm.get('title')?.errors?.['required']">O título é obrigatório.</div>
+      <div *ngIf="contentForm.get('title')?.errors?.['minlength']">O título deve ter pelo menos 5 caracteres.</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Conteúdo</label>
+    
+    <editor
+      formControlName="body"
+      [init]="editorConfig"
+      apiKey=""
+    ></editor>
+    
+    <div *ngIf="contentForm.get('body')?.invalid && contentForm.get('body')?.touched" class="text-danger small mt-1">
+      O conteúdo não pode estar vazio.
+    </div>
+  </div>
+
+  <div class="d-flex gap-2">
+    <button 
+      type="submit" 
+      class="btn btn-primary" 
+      [disabled]="contentForm.invalid || isSubmitting">
+      {{ isSubmitting ? 'Salvando...' : 'Salvar Conteúdo' }}
+    </button>
+    
+    <button 
+      type="button" 
+      class="btn btn-secondary"
+      (click)="router.navigate(['/categories', categoryId])">
+      Cancelar
+    </button>
+  </div>
+</form>

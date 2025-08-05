@@ -1,0 +1,36 @@
+<h2>{{ pageTitle }}</h2>
+<hr>
+
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="categoryName" class="form-label">Nome da Categoria</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      id="categoryName" 
+      formControlName="name"
+      [class.is-invalid]="categoryForm.get('name')?.invalid && categoryForm.get('name')?.touched"
+      aria-describedby="nameHelp">
+    
+    <div *ngIf="categoryForm.get('name')?.invalid && categoryForm.get('name')?.touched" class="invalid-feedback">
+      <div *ngIf="categoryForm.get('name')?.errors?.['required']">
+        O nome é obrigatório.
+      </div>
+      <div *ngIf="categoryForm.get('name')?.errors?.['minlength']">
+        O nome deve ter pelo menos 3 caracteres.
+      </div>
+    </div>
+    <div id="nameHelp" class="form-text">Insira o nome para a nova categoria principal.</div>
+  </div>
+
+  <button 
+    type="submit" 
+    class="btn btn-primary" 
+    [disabled]="categoryForm.invalid || isSubmitting">
+    <span *ngIf="!isSubmitting">
+      {{ categoryIdToUpdate ? 'Atualizar Categoria' : 'Salvar Categoria' }}
+    </span>
+    <span *ngIf="isSubmitting">Salvando...</span>
+
+  </button>
+</form>

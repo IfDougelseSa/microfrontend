@@ -1,0 +1,17 @@
+<div class="sidebar-container">
+  <div class="p-3">
+    <a [routerLink]="routingService.buildPath(['categories', 'new'])" class="btn btn-success w-100">
+      + Nova Categoria
+    </a>
+  </div>
+
+  <app-sidenav [items]="navItems" (itemDelete)="handleItemDelete($event)"></app-sidenav>
+</div>
+
+<main class="main-content">
+  <app-card>
+    <h3 libCardTitle>Área de Estudos (MFE)</h3>
+    <hr />
+    <router-outlet></router-outlet>
+  </app-card>
+</main>

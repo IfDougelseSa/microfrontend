@@ -1,0 +1,16 @@
+<div class="card-wrapper">
+  <div class="card-header" *ngIf="hasHeader">
+
+    <ng-content select="[libCardTitle]"></ng-content>
+  </div>
+
+  <div class="card-body">
+
+    <ng-content></ng-content>
+  </div>
+
+  <div class="card-footer" *ngIf="hasFooter">
+
+    <ng-content select="[libCardFooter]"></ng-content>
+  </div>
+</div>

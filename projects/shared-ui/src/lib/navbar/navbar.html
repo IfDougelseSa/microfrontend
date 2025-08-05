@@ -1,0 +1,23 @@
+<ul class="nav" [ngClass]="'nav-' + navStyle">
+  
+  <li class="nav-item" *ngFor="let tab of tabs">
+    <a *ngIf="tab.link"
+       class="nav-link"
+       [routerLink]="tab.link"
+       routerLinkActive="active"
+       [class.disabled]="tab.disabled"
+       [attr.aria-disabled]="tab.disabled"
+       [tabindex]="tab.disabled ? -1 : 0">
+      {{ tab.title }}
+    </a>
+    <button *ngIf="!tab.link"
+            class="nav-link"
+            [class.active]="tab.id === activeId"
+            [class.disabled]="tab.disabled"
+            [disabled]="tab.disabled"
+            (click)="selectTab(tab)">
+      {{ tab.title }}
+    </button>
+
+  </li>
+</ul>

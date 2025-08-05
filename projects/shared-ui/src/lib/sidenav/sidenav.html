@@ -1,0 +1,37 @@
+<ul class="sidenav-list">
+  <ng-container *ngFor="let item of items">
+    <ng-container 
+      *ngTemplateOutlet="navItemTemplate; context: { $implicit: item, parent: null }">
+    </ng-container>
+  </ng-container>
+</ul>
+
+<ng-template #navItemTemplate let-item let-parent="parent">
+  <li [class.open]="item.expanded" class="list-item-wrapper">
+    <div class="item-content">
+      <a 
+        [routerLink]="item.link" 
+        (click)="toggleItem(item, parent); $event.preventDefault()" 
+        class="sidenav-link"
+        routerLinkActive="active" 
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i *ngIf="item.icon" [class]="item.icon"></i>
+        <span>{{ item.label }}</span>
+        <i *ngIf="item.children && item.children.length > 0" class="submenu-arrow"></i>
+      </a>
+      
+      <span class="delete-icon" title="Deletar categoria" (click)="onDeleteItemClick(item, parent, $event)">
+        🗑️
+      </span>
+    </div>
+
+    <ul *ngIf="item.children && item.children.length > 0 && item.expanded" class="submenu">
+      <ng-container *ngFor="let child of item.children">
+        <ng-container 
+          *ngTemplateOutlet="navItemTemplate; context: { $implicit: child, parent: item }">
+        </ng-container>
+      </ng-container>
+    </ul>
+  </li>
+</ng-template>
