@@ -1,0 +1,61 @@
+name: Build and Deploy Angular MFE
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+    environment: study-secrets
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Shell App
+        run: npx ng build shell-app --configuration production
+
+      - name: Build MFE Study App
+        run: npx ng build mfe-study-app --configuration production
+
+      - name: Create deployment package
+        run: |
+          mkdir -p deploy/shell
+          mkdir -p deploy/mfe-study-app
+          cp -r dist/shell-app/browser/* deploy/shell/
+          cp -r dist/mfe-study-app/browser/* deploy/mfe-study-app/
+
+      - name: Deploy Files to Server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          source: "deploy/*"
+          target: "/var/www/studies-app/"
+          strip_components: 1
+          overwrite: true
+
+      - name: Restart Nginx on Server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            echo "Reiniciando Nginx para servir os novos arquivos..."
+            sudo systemctl restart nginx
+            echo "Deploy do frontend concluído!"

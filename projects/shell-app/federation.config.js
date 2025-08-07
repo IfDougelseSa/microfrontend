@@ -4,7 +4,8 @@ module.exports = withNativeFederation({
 
   remotes: {
     // Adicione esta linha:
-    'mfe-study-app': 'http://localhost:4201/remoteEntry.json',
+    // apenas desenvolvimento'mfe-study-app': 'http://localhost:4201/remoteEntry.json',
+    'mfe-study-app': 'mfe-study-app/remoteEntry.json',
   },
 
   shared: {

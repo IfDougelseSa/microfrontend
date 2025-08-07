@@ -4,7 +4,8 @@ module.exports = withNativeFederation({
 
   name: 'mfe-study-app',
   filename: 'remoteEntry.js',  // 🔥 Isso faz o arquivo ser servido
-  publicPath: 'http://localhost:4201/',
+  //apenas para desennvolvimento publicPath: 'http://localhost:4201/',
+  publicPath: '/mfe-study-app/', 
   withPublicPath: true,
 
   exposes: {
