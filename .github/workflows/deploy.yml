@@ -20,8 +20,12 @@ jobs:
           node-version: '20'
           cache: 'yarn'
 
-      - name: Install Dependencies
+      - name: Enable and Install Yarn
+        run: |
+          corepack enable
+          corepack prepare yarn@stable --activate
 
+      - name: Install Dependencies
         run: yarn install --frozen-lockfile
 
       - name: Build Shell App
