@@ -39,7 +39,7 @@ jobs:
           mkdir -p deploy/shell
           mkdir -p deploy/mfe-study-app
           cp -r dist/mfe-study-app/browser/* deploy/mfe-study-app/
-          cp -r dist/shell-app/browser/* deploy/shell/
+          cp -r dist/shell-app/browser/* deploy/shell-app/
 
       - name: Deploy Files to Server
         uses: appleboy/scp-action@v0.1.7
