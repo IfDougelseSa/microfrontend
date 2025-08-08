@@ -1,3 +1,3 @@
 {
-	"mfe-study-app": "http://localhost:4201/remoteEntry.json"
+    "mfe-study-app": "mfe-study-app/remoteEntry.json"
 }
