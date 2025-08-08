@@ -1,3 +1,3 @@
 {
-    "mfe-study-app": "mfe-study-app/remoteEntry.json"
+    "mfe-study-app": "http://192.168.0.129/mfe-study-app/remoteEntry.json"
 }
