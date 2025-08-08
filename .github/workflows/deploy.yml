@@ -26,13 +26,13 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build Shared UI Library
-        run: npx ng build shared-ui --configuration production
-
-      - name: Build Shell App
-        run: npx ng build shell-app --configuration production
+        run: npx ng build shared-ui --configuration production  
 
       - name: Build MFE Study App
         run: npx ng build mfe-study-app --configuration production
+
+      - name: Build Shell App
+        run: npx ng build shell-app --configuration production
 
       - name: Create deployment package
         run: |
