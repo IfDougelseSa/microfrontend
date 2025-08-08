@@ -6,7 +6,7 @@ export class MfeRouting {
   
 
   buildPath(segments: any[]): any[] {
-      return ['/', ...segments];
+      return ['/study', ...segments];
     
  
   }
