@@ -36,7 +36,7 @@ jobs:
 
       - name: Create deployment package
         run: |
-          mkdir -p deploy/shell
+          mkdir -p deploy/shell-app
           mkdir -p deploy/mfe-study-app
           cp -r dist/mfe-study-app/browser/* deploy/mfe-study-app/
           cp -r dist/shell-app/browser/* deploy/shell-app/
