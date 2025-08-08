@@ -14,13 +14,13 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js and Yarn
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          yarn-version: 'stable' 
-          cache: 'yarn'
 
+      - name: Install Yarn
+        run: npm install -g yarn
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
