@@ -90,7 +90,7 @@ export class ContentEditComponent implements OnInit {
         });
       } else {
         console.error("Conteúdo não encontrado. Redirecionando.");
-        this.router.navigate(['../../'], { relativeTo: this.route });
+        this.router.navigate(['../'], { relativeTo: this.route });
       }
     });
   }
@@ -110,7 +110,7 @@ export class ContentEditComponent implements OnInit {
     this.categoryService.updateContent(this.categoryId, this.contentId, contentData).subscribe({
       next: (updatedContent) => {
         console.log('Conteúdo atualizado com sucesso!', updatedContent);
-        this.router.navigate(['../../'], { relativeTo: this.route });
+        this.router.navigate(['../'], { relativeTo: this.route });
       },
       error: (err) => {
         console.error('Erro ao atualizar conteúdo', err);
