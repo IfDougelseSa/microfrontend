@@ -90,7 +90,7 @@ export class ContentCreateComponent implements OnInit {
     this.categoryService.addContentToCategory(this.categoryId, contentData).subscribe({
       next: (createdContent) => {
         console.log('Conteúdo criado com sucesso!', createdContent);
-        this.router.navigate(['/categories', this.categoryId]);
+        this.router.navigate(['../'], { relativeTo: this.route });
       },
       error: (err) => {
         console.error('Erro ao criar conteúdo', err);
