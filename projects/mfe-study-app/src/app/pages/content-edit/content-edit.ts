@@ -71,7 +71,7 @@ export class ContentEditComponent implements OnInit {
 
     if (!this.categoryId || !this.contentId) {
       console.error("IDs de Categoria ou Conteúdo não encontrados na rota!");
-      this.router.navigate(['/']); 
+      this.router.navigate(['/study']);
       return;
     }
     
@@ -90,7 +90,7 @@ export class ContentEditComponent implements OnInit {
         });
       } else {
         console.error("Conteúdo não encontrado. Redirecionando.");
-        this.router.navigate(['/categories', this.categoryId]);
+        this.router.navigate(['../../'], { relativeTo: this.route });
       }
     });
   }
@@ -110,7 +110,7 @@ export class ContentEditComponent implements OnInit {
     this.categoryService.updateContent(this.categoryId, this.contentId, contentData).subscribe({
       next: (updatedContent) => {
         console.log('Conteúdo atualizado com sucesso!', updatedContent);
-        this.router.navigate(['/categories', this.categoryId]);
+        this.router.navigate(['../../'], { relativeTo: this.route });
       },
       error: (err) => {
         console.error('Erro ao atualizar conteúdo', err);
