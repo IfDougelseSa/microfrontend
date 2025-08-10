@@ -8,6 +8,7 @@ import { CategoryCreate } from './pages/category-create/category-create';
 import { ContentCreateComponent } from './pages/content-create/content-create';
 import { ContentEditComponent } from './pages/content-edit/content-edit';
 import { MfeRouting } from './services/mfe-routing';
+import { FileUploadService } from './services/fileupload.service';
 
 export const routes: Routes = [
     {
@@ -17,6 +18,7 @@ export const routes: Routes = [
             provideHttpClient(withInterceptorsFromDi()),
 
             CategoryService,
+            FileUploadService,
             MfeRouting,
         ],
         children: [
