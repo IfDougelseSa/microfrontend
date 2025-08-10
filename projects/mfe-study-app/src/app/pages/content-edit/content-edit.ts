@@ -25,8 +25,8 @@ export class ContentEditComponent implements OnInit {
   contentId: string | null = null;
   editorConfig = {
     height: 500,
-    plugins: 'lists link image media table code help wordcount advlist autolink',
-    toolbar: 'undo redo | bold italic underline | bullist numlist | link image media | alignleft aligncenter alignright | code',
+    plugins: 'lists link image media table code codesample help wordcount advlist autolink',
+    toolbar: 'undo redo | bold italic underline | bullist numlist | link image media | codesample | alignleft aligncenter alignright | code',
     
     file_picker_types: 'image media',
     
