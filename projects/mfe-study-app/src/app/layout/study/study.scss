@@ -1,13 +1,27 @@
 :host {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    background-color: #f0f2f5;
-  }
-  
-  .main-content {
-    flex: 1;
-    padding: 2rem;
-    overflow-y: auto;
-  }
-  
+  display: flex;       
+  flex-direction: row; 
+  height: 100vh;       
+  overflow: hidden;    
+}
+
+.sidebar-container {
+  width: 250px;       
+  flex-shrink: 0;    
+  display: flex;
+  flex-direction: column; 
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+}
+
+
+app-sidenav {
+  flex-grow: 1;       
+  overflow-y: auto;   
+}
+
+.main-content {
+  flex-grow: 1;       
+  padding: 2rem;
+  overflow-y: auto;  
+}

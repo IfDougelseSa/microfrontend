@@ -1,9 +1,5 @@
 :host {
   display: block;
-  width: 250px;  
-  background-color: #f8f9fa;
-  border-right: 1px solid #dee2e6;
-  padding: 1rem;
   
   --link-color: #343a40;
   --link-hover-bg: #e9ecef;
@@ -17,7 +13,9 @@
   margin: 0;
 }
 
+
 .list-item-wrapper {
+
 }
 
 .item-content {
@@ -76,9 +74,8 @@ li.open > .item-content > .sidenav-link .submenu-arrow {
 }
 
 li.open > .submenu {
-  max-height: 500px;
+  max-height: none;
 }
-
 
 .delete-icon {
   padding: 0.75rem;

@@ -1,5 +1,3 @@
-// src/app/components/content-create/content-create.ts
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -28,7 +26,7 @@ export class ContentCreateComponent implements OnInit {
   editorConfig = {
     height: 500,
     plugins: 'lists link image media table code codesample help wordcount advlist autolink',
-    toolbar: 'undo redo | bold italic underline | bullist numlist | link image media | alignleft aligncenter alignright | code',
+    toolbar: 'undo redo | bold italic underline | bullist numlist | link image media | codesample | alignleft aligncenter alignright | code',
     
     file_picker_types: 'image media',
     
